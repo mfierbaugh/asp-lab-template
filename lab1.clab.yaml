@@ -124,6 +124,8 @@ topology:
     - endpoints: ["PE.23:Gi0-0-0-4", "CE.14:Gi0-0-0-0"]
     - endpoints: ["PE.24:Gi0-0-0-3", "CE.13:Gi0-0-0-1"]
     - endpoints: ["PE.24:Gi0-0-0-4", "CE.14:Gi0-0-0-1"]
+    - endpoints: ["CE.11:Gi0-0-0-2", "CE.12:Gi0-0-0-2"]
+    - endpoints: ["CE.13:Gi0-0-0-2", "CE.14:Gi0-0-0-2"]
     - endpoints: ["vRR-SR-PCE.51:Gi0-0-0-0", "CORE.101:FH0_0_0_3"]
     - endpoints: ["vRR-SR-PCE.51:Gi0-0-0-1", "CORE.103:FH0_0_0_3"]
     - endpoints: ["vRR-SR-PCE.52:Gi0-0-0-0", "CORE.102:FH0_0_0_3"]

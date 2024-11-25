@@ -87,17 +87,15 @@ igmp:
   interfaces:
 
 services:
-  l2transport_interfaces:
-    # - {name: HundredGigE0/0/0/12, descr: "EVPN VPWS P2P NIMBRA DC1", vlan: 0, rewrite: none }
-
   l3_interfaces:
 #  - {name: TenGigE0/0/0/0, descr: "Internet Traffic interface", vlan: 1111, ipv4: 11.11.11.1/24, ipv6: '11:11:11:0/127', mtu: 9192}
     # - {name: Loopback10, descr: "ASP VIDEO ANYCAST RP INERFACE", vlan: 0, ipv4: 10.200.200.1/32, ipv6: '2000::10:200:200:1/128'}
     - {name: Loopback128, descr: "ASP TEST BLUE VRF INERFACE", vlan: 0, ipv4: 10.63.128.1/32, ipv6: '2000::10:63:128:1/128'}
     - {name: Loopback129, descr: "ASP TEST RED VRF INERFACE", vlan: 0, ipv4: 10.63.129.1/32, ipv6: '2000::10:63:129:1/128'}
-
-  evpn_vpws:
-    #  - { name: BLUE_NIMBRA_DC1_NIMBRA_DC2, interface: HundredGigE0/0/0/12, evi: 105, sr_policy: NIMBRA_BLUE_PLANE }
+    - {name: GigabitEthernet0/0/0/3, descr: "ASP - CE.13 VRF BLUE", vlan: 101, ipv4: 10.13.23.1/31, ipv6: '2001::10:13:23:1/127'}
+    - {name: GigabitEthernet0/0/0/3, descr: "ASP - CE.13 VRF RED", vlan: 102, ipv4: 10.13.23.1/31, ipv6: '2001::10:13:23:1/127'}
+    - {name: GigabitEthernet0/0/0/4, descr: "ASP - PE.23 VRF BLUE", vlan: 101, ipv4: 10.14.23.1/31, ipv6: '2001::10:14:23:1/127'}
+    - {name: GigabitEthernet0/0/0/4, descr: "ASP - PE.23 VRF RED", vlan: 102, ipv4: 10.14.23.1/31, ipv6: '2001::10:14:23:1/127'}
 
   l3vpn:
     - name: TEST_BLUE
@@ -106,8 +104,11 @@ services:
       algo_map: ALGO-BLUE 
       interfaces: 
         - { name: Loopback128 }
+        - { name: GigabitEthernet0/0/0/3.101}
+        - { name: GigabitEthernet0/0/0/4.101}
       bgp_neighbors:
-        - { enable: false }
+        - { enable: true, ipv4: 10.13.23.0, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.14.23.0, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }
 
     - name: TEST_RED
       rd: auto
@@ -115,18 +116,8 @@ services:
       algo_map: ALGO-RED 
       interfaces: 
         - { name: Loopback129 }
+        - { name: GigabitEthernet0/0/0/3.102}
+        - { name: GigabitEthernet0/0/0/4.102}
       bgp_neighbors:
-        - { enable: false }
-
-  mvpn:
-    - name: TEST_BLUE
-      rd: auto
-      vpn_id: 110 
-      interfaces:
-        vrf:
-          - { name: Loopback128 }
-        pim:
-          - { name: HundredGigE0/0/0/12.100}
-          - { name: Loopback200 }
-          - { name: Loopback110 }
-        igmp:
+        - { enable: true, ipv4: 10.13.23.0, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.14.23.0, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }

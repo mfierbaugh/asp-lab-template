@@ -6,8 +6,8 @@ xr_7: true
 dnx: false
 management_int: 0/RP0/CPU0/0
 max_sid_depth: 6
-asn: 65000
-bgp_rrc: true
+asn: 65100
+bgp_rrc: false
 bgp_rr: false
 netflow: false
 xrd: true
@@ -16,8 +16,7 @@ optics:
   - {enable: false}
 
 network_interfaces:
-  - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21", remote_id: 21, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 9000}
-  - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22", remote_id: 22, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 9000}
+  - {name: GigabitEthernet0/0/0/2, descr: "ASP - CE.11", remote_id: 11, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 9000}
 
 Flex_Algo_Membership: {128, 129, 130}
 
@@ -46,177 +45,34 @@ ibgp_peers:
   # - { enable: true, ipv4: 1.1.1.23 }
   # - { enable: true, ipv4: 1.1.1.24 }
 
-sr_pce:
-  - ip: 1.1.1.51
-    v6: 51:51:51::51
-    precedence: 1
-  - ip: 1.1.1.52
-    v6: 52:52:52::52
-    precedence: 2
-
-route_reflectors:
-  - ip: 1.1.1.51
-    v6: 51:51:51::51
-    precedence: 1
-  - ip: 1.1.1.52
-    v6: 52:52:52::52
-    precedence: 2
-
-
-sr_policy:
-  manual:
-    - { name: TEST_SR_POLICY, color: 100, endpoint: 1.1.1.23, metric_type: igp, pce: false, algo: 0 }
-    - { name: NIMBRA_BLUE_PLANE, color: 105, endpoint: 1.1.1.23, metric_type: igp, pce: false, algo: 128 }
-
-  odn:
-    - { color: 128, metric_type: igp, pce: false, algo: 128 }
-    - { color: 129, metric_type: igp, pce: false, algo: 129 }
-    - { color: 130, metric_type: latency, pce: false, algo: 130 }
-
-multicast:
-  interfaces:
-    # - {name: Bundle-Ether1000}
-    # - {name: Bundle-Ether62}
-    # - {name: Loopback10 }
-    # - {name: Loopback0 }
-
-igmp:
-  interfaces:
 
 services:
-  l2transport_interfaces:
-    - {name: HundredGigE0/0/1/4, descr: "EVPN VPWS P2P NIMBRA DC1", vlan: 0, rewrite: none }
-
   l3_interfaces:
-#  - {name: TenGigE0/0/0/0, descr: "Internet Traffic interface", vlan: 1111, ipv4: 11.11.11.1/24, ipv6: '11:11:11:0/127', mtu: 9192}
-    # - {name: Loopback10, descr: "ASP VIDEO ANYCAST RP INERFACE", vlan: 0, ipv4: 10.200.200.1/32, ipv6: '2000::10:200:200:1/128'}
-    - {name: Loopback101, descr: "ASP CONTENT VOD ORIGIN Interface LOCAL", vlan: 0, ipv4: 10.61.1.1/32, ipv6: '2000::10:61:1:1/128'}
-    - {name: Loopback102, descr: "ASP VOD SECURE Interface LOCAL", vlan: 0, ipv4: 10.61.2.1/32, ipv6: '2000::10:61:2:1/128'}
-    - {name: Loopback103, descr: "ASP HULU LEGACY Interface LOCAL", vlan: 0, ipv4: 10.61.3.1/32, ipv6: '2000::10:61:3:1/128'}
-    - {name: Loopback110, descr: "ASP UNIFIED VRF INERFACE", vlan: 0, ipv4: 10.61.0.1/32, ipv6: '2000::10:61:0:1/128'}
-    - {name: Loopback111, descr: "ASP CONTENT VOD ORIGIN Interface", vlan: 0, ipv4: 10.61.11.1/32, ipv6: '2000::10:61:11:1/128'}
-    - {name: Loopback112, descr: "ASP VOD SECURE Interface", vlan: 0, ipv4: 10.61.12.1/32, ipv6: '2000::10:61:12:1/128'}
-    - {name: Loopback113, descr: "ASP HULU LEGACY Interface", vlan: 0, ipv4: 10.61.13.1/32, ipv6: '2000::10:61:13:1/128'}
-    - {name: Loopback128, descr: "ASP TEST BLUE VRF INERFACE", vlan: 0, ipv4: 10.61.128.1/32, ipv6: '2000::10:61:128:1/128'}
-    - {name: Loopback129, descr: "ASP TEST RED VRF INERFACE", vlan: 0, ipv4: 10.61.129.1/32, ipv6: '2000::10:61:129:1/128'}
-    - {name: Loopback200, descr: "ASP VIDEO MVPN ANYCAST RP INERFACE", vlan: 0, ipv4: 10.200.200.1/32, ipv6: '2000::10:200:200:1/128'}
-    - {name: HundredGigE0/0/1/5, descr: "ASP UNIFIED-Multicast DCE Video Interface", vlan: 100, ipv4: 10.61.100.1/24, ipv6: '2001::10:61:100:0/127'}
-    - {name: HundredGigE0/0/1/5, descr: "ASP CONTENT VOD ORIGIN Interface", vlan: 101, ipv4: 10.61.101.1/24, ipv6: '2001::10:61:101:0/127'}
-    - {name: HundredGigE0/0/1/5, descr: "ASP VOD SECURE Interface", vlan: 102, ipv4: 10.61.102.1/24, ipv6: '2001::10:61:102:0/127'}
-    - {name: HundredGigE0/0/1/5, descr: "ASP HULU LEGACY Interface", vlan: 103, ipv4: 10.61.103.1/24, ipv6: '2001::10:61:103:0/127'}
-
-  evpn_vpws:
-    #  - { name: BLUE_NIMBRA_DC1_NIMBRA_DC2, interface: HundredGigE0/0/1/4, evi: 105, sr_policy: NIMBRA_BLUE_PLANE }
-
-  ldp_vpws:
-    - { name: BLUE_NIMBRA_DC1_NIMBRA_DC2, interface: HundredGigE0/0/1/4, peer: 1.1.1.23, pw_id: 105, sr_policy: NIMBRA_BLUE_PLANE }    
-
-  l3vpn:
-    - name: UNIFIED
-      vpn_id: 110
-      algo_map: ALGO-DELAY 
-      rd: auto
-      interfaces: 
-        - { name: Loopback110 }
-        - { name: Loopback200 }
-        - { name: HundredGigE0/0/1/5.100}
-      bgp_neighbors:
-        - { enable: true, ipv4: 10.61.100.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
- 
-    - name: CONTENT_VOD_ORIGIN
-      rd: auto
-      vpn_id: 111
-      interfaces: 
-        - { name: Loopback111 }
-        - { name: HundredGigE0/0/1/5.101}
-      bgp_neighbors:
-        - { enable: true, ipv4: 10.61.101.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
-
-    - name: CONTENT_VOD_SECURE
-      rd: auto
-      vpn_id: 112
-      algo_map: ALGO-RED 
-      interfaces: 
-        - { name: Loopback112 }
-        - { name: HundredGigE0/0/1/5.102}
-      bgp_neighbors:
-        - { enable: true, ipv4: 10.61.102.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
-
-    - name: HULU_LEGACY
-      rd: auto
-      vpn_id: 113
-      interfaces: 
-        - { name: Loopback113 }
-        - { name: HundredGigE0/0/1/5.103}
-      bgp_neighbors:
-        - { enable: true, ipv4: 10.61.103.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
-
-    - name: TEST_BLUE
-      rd: auto
-      vpn_id: 128
-      algo_map: ALGO-BLUE 
-      interfaces: 
-        - { name: Loopback128 }
-      bgp_neighbors:
-        - { enable: false }
-
-    - name: TEST_RED
-      rd: auto
-      vpn_id: 129
-      algo_map: ALGO-RED 
-      interfaces: 
-        - { name: Loopback129 }
-      bgp_neighbors:
-        - { enable: false }
-  mvpn:
-    - name: UNIFIED
-      rd: auto
-      vpn_id: 110
-      interfaces:
-        vrf:
-          - { name: Loopback110 }
-        pim:
-          - { name: HundredGigE0/0/1/5.100 }
-          - { name: Loopback200 }
-          - { name: Loopback110 }
-        igmp:
+    - {name: Loopback128, descr: "ASP TEST BLUE VRF INERFACE", vlan: 0, ipv4: 10.12.128.1/32, ipv6: '2000::10:12:128:1/128'}
+    - {name: Loopback129, descr: "ASP TEST RED VRF INERFACE", vlan: 0, ipv4: 10.12.129.1/32, ipv6: '2000::10:12:129:1/128'}
+    - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 VRF BLUE", vlan: 101, ipv4: 10.12.21.0/31, ipv6: '2001::10:12:21:0/127'}
+    - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 VRF RED", vlan: 102, ipv4: 10.12.21.0/31, ipv6: '2001::10:12:21:0/127'}
+    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22 VRF BLUE", vlan: 101, ipv4: 10.12.22.0/24, ipv6: '2001::10:12:22:0/127'}
+    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22 VRF RED", vlan: 102, ipv4: 10.12.22.0/24, ipv6: '2001::10:12:22:0/127'}
           
   vrf_lite:
-    - name: VOD_ORIGIN_LOCAL
-      vpn_id: 101
+    - name: BLUE
+      vpn_id: 128
       interfaces:
-        - { name: Bundle-Ether1000.101}
-        - { name: Bundle-Ether62.101}
-        - { name: Loopback101 }
-  #      - { name: HundredGigE0/0/1/5.101 } 
+        - { name: GigabitEthernet0/0/0/0.101}
+        - { name: GigabitEthernet0/0/0/1.101}
+        - { name: Loopback128 }
       bgp_neighbors:
-        - { enable: true, ipv4: 10.62.1.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.63.1.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.64.1.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.61.101.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.12.21.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.12.22.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
 
-    - name: VOD_SECURE_LOCAL
-      vpn_id: 102
+    - name: RED
+      vpn_id: 129
       interfaces:
-        - { name: Bundle-Ether1000.102}
-        - { name: Bundle-Ether62.102}
-        - { name: Loopback102 }
-  #      - { name: HundredGigE0/0/1/5.102 } 
+        - { name: GigabitEthernet0/0/0/0.101}
+        - { name: GigabitEthernet0/0/0/1.101}
+        - { name: Loopback129 }
       bgp_neighbors:
-        - { enable: true, ipv4: 10.62.2.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.63.2.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.64.2.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.61.102.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.12.21.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
+        - { enable: true, ipv4: 10.12.22.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
 
-    - name: HULU_LEGACY_LOCAL
-      vpn_id: 103
-      interfaces:
-        - { name: Bundle-Ether1000.103}
-        - { name: Bundle-Ether62.103}
-        - { name: Loopback103 }
-  #      - { name: HundredGigE0/0/1/5.103 } 
-      bgp_neighbors:
-        - { enable: true, ipv4: 10.62.3.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.63.3.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.64.3.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
-        - { enable: true, ipv4: 10.61.103.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
