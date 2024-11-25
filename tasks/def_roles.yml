@@ -1,5 +1,5 @@
 ---
-- name: Configure Baseconfig Dataplane and IGP for all devices
+- name: Configure Baseconfig Dataplane for all devices
   hosts: all
   gather_facts: no
   connection: local
@@ -19,6 +19,7 @@
   # - MACSEC
   - LDP
   - BGP
+  - MDT
   - SR-MPLS
   - SR-TE
   - SR-PM
@@ -45,6 +46,7 @@
   - IGP
   # - MACSEC
   - LDP
+  - MDT
   - SR-MPLS
   - SR-PM
   - MPLS_TE
@@ -58,5 +60,6 @@
 
   roles:
   - IGP
+  - MDT
   - BGP
   - PCE

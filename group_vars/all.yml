@@ -208,7 +208,7 @@ srv6_locators:
     algo: 131
 
 # Test veriables
-test_ping: ["10.1.1.50","10.1.1.51"]
+test_ping: ["1.1.1.51","1.1.1.52"]
 
 # Webex Intigration
 wx_recipient_type: roomId

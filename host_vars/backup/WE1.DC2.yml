@@ -43,7 +43,7 @@ ebgp_peers:
 
 
 sr_pce:
-  - ip: 10.1.1.51
+  - ip: 1.1.1.52
     v6: 51:51:51::51
     precedence: 1
   - ip: 10.1.1.52
@@ -51,7 +51,7 @@ sr_pce:
     precedence: 2
 
 route_reflectors:
-  - ip: 10.1.1.51
+  - ip: 1.1.1.52
     v6: 51:51:51::51
     precedence: 1
   - ip: 10.1.1.52
