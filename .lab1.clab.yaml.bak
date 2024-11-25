@@ -27,55 +27,55 @@ topology:
     CORE.101:
       kind: c8000
       image: 8212-48fh-m_clab325:24.2.2
-      startup-config: base_config.cfg
+      startup-config: configs/base_config.cfg
       mgmt-ipv4: 198.18.130.101
 
     CORE.102:
       kind: c8000
       image: 8212-48fh-m_clab325:24.2.2
-      startup-config: base_config.cfg
+      startup-config: configs/base_config.cfg
       mgmt-ipv4: 198.18.130.102
 
     CORE.103:
       kind: c8000
       image: 8711-32fh-m_clab324:24.2.2
-      startup-config: base_config.cfg
+      startup-config: configs/base_config.cfg
       mgmt-ipv4: 198.18.130.103
 
     CORE.104:
       kind: c8000
       image: 8711-32fh-m_clab324:24.2.2
-      startup-config: base_config.cfg
+      startup-config: configs/base_config.cfg
       mgmt-ipv4: 198.18.130.104
 
     vRR-SR-PCE.51:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.51
 
     vRR-SR-PCE.52:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.52
 
     PE.21:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.21
 
     PE.22:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.22
 
     PE.23:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.23
 
     PE.24:
       kind: xrd
-      startup-config: xrd_config.cfg
+      startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.24
 
   links:

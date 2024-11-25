@@ -78,6 +78,27 @@ topology:
       startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.24
 
+    CE.11:
+      kind: xrd
+      startup-config: configs/xrd_config.cfg
+      mgmt-ipv4: 198.18.130.11
+
+    CE.12:
+      kind: xrd
+      startup-config: configs/xrd_config.cfg
+      mgmt-ipv4: 198.18.130.12
+
+    CE.13:
+      kind: xrd
+      startup-config: configs/xrd_config.cfg
+      mgmt-ipv4: 198.18.130.13
+
+    CE.14:
+      kind: xrd
+      startup-config: configs/xrd_config.cfg
+      mgmt-ipv4: 198.18.130.14
+
+
   links:
     - endpoints: ["CORE.101:FH0_0_0_0", "CORE.102:FH0_0_0_0"]
     - endpoints: ["CORE.101:FH0_0_0_1", "CORE.103:FH0_0_0_1"]
@@ -95,6 +116,14 @@ topology:
     - endpoints: ["PE.24:Gi0-0-0-1", "CORE.104:FH0_0_0_5"]
     - endpoints: ["PE.21:Gi0-0-0-2", "PE.22:Gi0-0-0-2"]
     - endpoints: ["PE.23:Gi0-0-0-2", "PE.24:Gi0-0-0-2"]
+    - endpoints: ["PE.21:Gi0-0-0-3", "CE.11:Gi0-0-0-0"]
+    - endpoints: ["PE.21:Gi0-0-0-4", "CE.12:Gi0-0-0-0"]
+    - endpoints: ["PE.22:Gi0-0-0-3", "CE.11:Gi0-0-0-1"]
+    - endpoints: ["PE.22:Gi0-0-0-4", "CE.12:Gi0-0-0-1"]
+    - endpoints: ["PE.23:Gi0-0-0-3", "CE.13:Gi0-0-0-0"]
+    - endpoints: ["PE.23:Gi0-0-0-4", "CE.14:Gi0-0-0-0"]
+    - endpoints: ["PE.24:Gi0-0-0-3", "CE.13:Gi0-0-0-1"]
+    - endpoints: ["PE.24:Gi0-0-0-4", "CE.14:Gi0-0-0-1"]
     - endpoints: ["vRR-SR-PCE.51:Gi0-0-0-0", "CORE.101:FH0_0_0_3"]
     - endpoints: ["vRR-SR-PCE.51:Gi0-0-0-1", "CORE.103:FH0_0_0_3"]
     - endpoints: ["vRR-SR-PCE.52:Gi0-0-0-0", "CORE.102:FH0_0_0_3"]
