@@ -1,5 +1,1 @@
-*
-!.gitignore
-!lab1.clab.yaml
-!configs/
-!README.md
+compiled/

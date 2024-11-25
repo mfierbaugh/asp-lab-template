@@ -1,0 +1,26 @@
+---
+- name: Reboot Lab Routers
+  hosts: "{{ reboot_group }}"
+  connection: network_cli
+
+  vars_prompt:
+    - name: reboot_group
+      prompt: "Device or group to reboot?"
+      private: no
+
+  tasks:
+    - name: Connect to and reboot router
+      cli_command:
+        command: reload locatiom all
+        prompt:
+          - Save?
+          - confirm
+        answer:
+          - y
+
+    - name: Reset connection
+      meta: reset_connection
+
+    - name: Wait for device to reload
+      wait_for_connection:
+        delay: 10
