@@ -48,12 +48,12 @@ ibgp_peers:
 
 services:
   l3_interfaces:
-    - {name: Loopback128, descr: "ASP TEST BLUE VRF INERFACE", vlan: 0, ipv4: 10.14.128.1/32, ipv6: '2000::10:14:128:1/128'}
-    - {name: Loopback129, descr: "ASP TEST RED VRF INERFACE", vlan: 0, ipv4: 10.14.129.1/32, ipv6: '2000::10:14:129:1/128'}
+    - {name: Loopback128, descr: "ASP TEST BLUE VRF INTERFACE", vlan: 0, ipv4: 10.14.128.1/32, ipv6: '2000::10:14:128:1/128'}
+    - {name: Loopback129, descr: "ASP TEST RED VRF INTERFACE", vlan: 0, ipv4: 10.14.129.1/32, ipv6: '2000::10:14:129:1/128'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 VRF BLUE", vlan: 101, ipv4: 10.14.23.0/31, ipv6: '2001::10:14:23:0/127'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 VRF RED", vlan: 102, ipv4: 10.14.23.0/31, ipv6: '2001::10:14:23:0/127'}
-    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF BLUE", vlan: 101, ipv4: 10.14.24.0/24, ipv6: '2001::10:14:24:0/127'}
-    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF RED", vlan: 102, ipv4: 10.14.24.0/24, ipv6: '2001::10:14:24:0/127'}
+    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF BLUE", vlan: 101, ipv4: 10.14.24.0/31, ipv6: '2001::10:14:24:0/127'}
+    - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF RED", vlan: 102, ipv4: 10.14.24.0/31, ipv6: '2001::10:14:24:0/127'}
           
   vrf_lite:
     - name: BLUE

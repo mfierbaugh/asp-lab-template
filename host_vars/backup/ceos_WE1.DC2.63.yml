@@ -71,11 +71,11 @@ multicast:
 services:
   l3_interfaces:
 #  - {name: TenGigE0/0/0/0, descr: "Internet Traffic interface", vlan: 1111, ipv4: 11.11.11.1/24, ipv6: '11:11:11:0/127', mtu: 9192}
-    - {name: Loopback100, descr: "DISNEY UNIFIED VRF INERFACE", vlan: 0, ipv4: 10.63.55.1/32, ipv6: '10:63:55:1/128'}
-    - {name: Loopback101, descr: "DISNEY UNIFIED VRF INERFACE", vlan: 0, ipv4: 10.63.56.1/32, ipv6: '10:63:56:1/128'}
-    - {name: Loopback102, descr: "DISNEY UNIFIED VRF INERFACE", vlan: 0, ipv4: 10.63.57.1/32, ipv6: '10:63:57:1/128'}
-    - {name: Loopback128, descr: "DISNEY TEST BLUE VRF INERFACE", vlan: 0, ipv4: 10.63.128.1/32, ipv6: '10:63:128:1/128'}
-    - {name: Loopback129, descr: "DISNEY TEST RED VRF INERFACE", vlan: 0, ipv4: 10.63.129.1/32, ipv6: '10:63:129:1/128'}
+    - {name: Loopback100, descr: "DISNEY UNIFIED VRF INTERFACE", vlan: 0, ipv4: 10.63.55.1/32, ipv6: '10:63:55:1/128'}
+    - {name: Loopback101, descr: "DISNEY UNIFIED VRF INTERFACE", vlan: 0, ipv4: 10.63.56.1/32, ipv6: '10:63:56:1/128'}
+    - {name: Loopback102, descr: "DISNEY UNIFIED VRF INTERFACE", vlan: 0, ipv4: 10.63.57.1/32, ipv6: '10:63:57:1/128'}
+    - {name: Loopback128, descr: "DISNEY TEST BLUE VRF INTERFACE", vlan: 0, ipv4: 10.63.128.1/32, ipv6: '10:63:128:1/128'}
+    - {name: Loopback129, descr: "DISNEY TEST RED VRF INTERFACE", vlan: 0, ipv4: 10.63.129.1/32, ipv6: '10:63:129:1/128'}
 
 
   evpn_vpws:
@@ -107,7 +107,7 @@ services:
       bgp_neighbors:
         - { enable: false }
 
-    - name: TEST_BLUE
+    - name: BLUE
       rd: 65128:128
       vpn_id: 128
       algo_map: ALGO-BLUE 
@@ -116,7 +116,7 @@ services:
       bgp_neighbors:
         - { enable: false }
 
-    - name: TEST_RED
+    - name: RED
       rd: 65129:129
       vpn_id: 129
       algo_map: ALGO-RED 
